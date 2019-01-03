@@ -1,0 +1,20 @@
+elev = elevation
+lat = latitude
+long = longitude
+mdl =
+tmp = temperature
+rh = relative humidity
+wind = wind speed
+ppt =
+erc = NFDRS energy release component
+bi = Burning index (10 times the flame length of the fire)
+sc = spread component 1, 10, 100 hrs into the future
+kbdi = Keetch-Byram Drought Index 0-800
+hun =
+thou =
+ten = 
+stl = Proportion of inert mineral content of live fuels
+adj = 
+ic = NFDRS ignition component 1-100 as a percentage
+
+https://gacc.nifc.gov/rmcc/predictive/fuels_fire-danger/drgloss.htm

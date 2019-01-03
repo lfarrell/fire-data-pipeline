@@ -1,0 +1,29 @@
+KBDI - create temporary table if not exists kbd as (select state, station, month,round(avg(kbdi),2) as kb
+from state, station, weather where state.id = station.state_id and station.id = weather.station_id and kbdi >= 0
+group by state, station, month);
+
+TMP - create temporary table if not exists temps as (select state, station, month,round(avg(tmp),2) as temp
+from state, station, weather where state.id=station.state_id and station.id = weather.station_id and tmp != -99
+group by state, station, month);
+
+WIND - create temporary table if not exists breezes as (select state, station, month,round(avg(wind),2) as breeze
+from state, station, weather where state.id=station.state_id and station.id = weather.station_id and wind != -99
+group by state, station, month);
+
+RH - create temporary table if not exists humid as (select state, station, month,round(avg(rh),2) as humidity
+from state, station, weather where state.id=station.state_id and station.id = weather.station_id and rh != -99
+group by state, station, month);
+
+PRECIP - create temporary table if not exists rains as (select state, station, month,round(avg(ppt),2) as rain
+from state, station, weather where state.id=station.state_id and station.id = weather.station_id and ppt != -99
+group by state, station, month);
+
+
+Merge All - select kbd.state, kbd.month, kb, temp, breeze, humidity, rain from kbd, temps, breezes, humid, rains
+where kbd.state = temps.state and kbd.month = temps.month and kbd.state = breezes.state and kbd.month = breezes.month
+and kbd.state = humid.state and kbd.month = humid.month and kbd.state = rains.state and kbd.state = rains.month;
+
+select 'state', 'station', 'month', 'kbdi','temp', 'breeze', 'humidity', 'rain'
+UNION ALL select drought.state, drought.station, drought.month,kb, temp, breeze, humidity, rain from mostly, drought
+where drought.state = mostly.state and drought.station = mostly.station and drought.month = mostly.month
+INTO OUTFILE '~/Downloads/stations.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';

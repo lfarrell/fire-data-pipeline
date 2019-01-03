@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+connection_vars.php
+fire-weather/*
+fire-weather-no-values/*
+fire-weather-new/*
+*.sql
