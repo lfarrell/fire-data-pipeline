@@ -19,5 +19,5 @@ for ($i=$days_since_jan_2000; $i>0; $i--) {
     LINES TERMINATED BY '\n'");
     $avg_station->execute([$file_date]);
 
-    echo $full_date . " processed\n";
+    echo $file_date . " processed\n";
 }
