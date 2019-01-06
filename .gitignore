@@ -5,3 +5,4 @@ fire-weather/*
 fire-weather-no-values/*
 fire-weather-new/*
 *.sql
+station_dailies/*
